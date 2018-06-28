@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vue2.0组件间事件派发与接收 | 夏君的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2.0组件间事件派发与接收">
+<meta property="og:url" content="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/index.html">
+<meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T07:00:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue2.0组件间事件派发与接收">
+<meta name="twitter:description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
+  
+    <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夏君的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="javascript:;" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://xiajun1996.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vue2.0组件间事件派发与接受" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="article-date">
+  <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue2.0组件间事件派发与接收
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在vue的开发中，经常会在两个组件间进行事件的通信<br>在vue1.0中我们使用$dispatch 和 $broadcast<br>child.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$dispatch</span>(<span class="string">'eventName'</span>,this.data);</span><br></pre></td></tr></table></figure></p>
+<p>parent.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">event:&#123;</span><br><span class="line">    <span class="string">'eventName'</span>:<span class="keyword">function</span>(data) &#123;</span><br><span class="line">        // 执行的方法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是在vue2.0中$dispatch 和 $broadcast被弃用，因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱,并且这只适用于父子组件间的通信。<br>官方给出的最简单的升级建议是使用集中的事件处理器,而且也明确说明了 一个空的vue实例就可以做到,因为Vue 实例实现了一个事件分发接口<br>在vue2.0中在初始化vue之前，给data添加一个 名字为eventhub 的空vue对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el: <span class="string">'#app'</span>,</span><br><span class="line">router,</span><br><span class="line">render: h =&gt; h(App),</span><br><span class="line">data: &#123;</span><br><span class="line">    eventHub: new Vue()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>某一个组件内调用事件触发<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$root</span>.eventHub.<span class="variable">$emit</span>(<span class="string">'eventName'</span>, event.target);</span><br></pre></td></tr></table></figure></p>
+<p>另一个组件内调用事件接收, 在组件销毁时接除事件绑定,使用$off方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">created</span></span>() &#123;</span><br><span class="line">  this.<span class="variable">$root</span>.eventHub.<span class="variable">$on</span>(<span class="string">'eventName'</span>,(target) =&gt; &#123;</span><br><span class="line">    this.functionName(target)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">method:&#123;</span><br><span class="line">  functionName(target) &#123;</span><br><span class="line">    console.log(target);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/" data-id="cjiwqbbj30005g9xkx9d50o6w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          阿里云ECS服务器安装mongodb
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/20/vue子组件修改父组件数据/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue子组件修改父组件数据</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rem/">rem</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/24/Singleton单例模式/">Singleton单例模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 夏君<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+    
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+          
+
+            <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

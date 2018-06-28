@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017 | 夏君的博客</title>
+  <title>Singleton单例模式 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夏君的博客">
-<meta property="og:url" content="http://xiajun1996.github.io/archives/2017/index.html">
+  <meta name="description" content="单例模式是必会的设计模式之一保证一个类仅有一个实例 并提供一个访问他的全局访问点。12345678910111213class Singleton &amp;#123;  // 单例类的声明，使用class关键字    this.instance = null;  //这是表示是否实例化过    static getInstance = function () &amp;#123;      //返回实例方法 s">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Singleton单例模式">
+<meta property="og:url" content="http://xiajun1996.github.io/2016/08/24/Singleton单例模式/index.html">
 <meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="单例模式是必会的设计模式之一保证一个类仅有一个实例 并提供一个访问他的全局访问点。12345678910111213class Singleton &amp;#123;  // 单例类的声明，使用class关键字    this.instance = null;  //这是表示是否实例化过    static getInstance = function () &amp;#123;      //返回实例方法 s">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T10:02:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夏君的博客">
+<meta name="twitter:title" content="Singleton单例模式">
+<meta name="twitter:description" content="单例模式是必会的设计模式之一保证一个类仅有一个实例 并提供一个访问他的全局访问点。12345678910111213class Singleton &amp;#123;  // 单例类的声明，使用class关键字    this.instance = null;  //这是表示是否实例化过    static getInstance = function () &amp;#123;      //返回实例方法 s">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -60,58 +65,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="archive-article-date">
-  <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">Aug 22</time>
+        <section id="main"><article id="post-Singleton单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/24/Singleton单例模式/" class="article-date">
+  <time datetime="2016-08-24T11:28:45.000Z" itemprop="datePublished">2016-08-24</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+    <h1 class="article-title" itemprop="name">
+      Singleton单例模式
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/20/vue子组件修改父组件数据/" class="archive-article-date">
-  <time datetime="2017-08-20T12:18:35.000Z" itemprop="datePublished">Aug 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
-    </h1>
-  
+        <p>单例模式是必会的设计模式之一<br>保证一个类仅有一个实例 并提供一个访问他的全局访问点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singleton &#123;  // 单例类的声明，使用class关键字</span><br><span class="line">    this.instance = null;  //这是表示是否实例化过</span><br><span class="line">    static getInstance = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      //返回实例方法 static  静态方法 只提供给类调用</span><br><span class="line">      //全局访问点 Singleton.getInstance</span><br><span class="line">      <span class="keyword">if</span>(!this.instance) &#123;</span><br><span class="line">        //实例化前做判断</span><br><span class="line">        this.instace = new Singleton();         </span><br><span class="line">      &#125;    </span><br><span class="line">      //返回实例</span><br><span class="line">      <span class="built_in">return</span> this.instance;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>自执行函数，返回一个匿名函数  并制造了一个闭包。<br>这是一种手法 经常用于生成一个闭包。</p>
+<p>var div;<br>div 由于被匿名函数这个闭包引用 所以他不会按常规的函数调用完成变量销毁来执行<br>而会一直存在于匿名函数定义时创建出来的闭包中<br>正好用来放instance</p>
+<p><a href="https://github.com/xiajun1996/Singleton" target="_blank" rel="noopener">代码地址</a></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/24/Singleton单例模式/" data-id="cjixxb8lx0001j0xk5zpiw2di" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/20/vue子组件修改父组件数据/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue子组件修改父组件数据
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/10/node.js 异步同步及文件操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">node.js 异步同步及文件操作</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

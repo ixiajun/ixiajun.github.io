@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017 | 夏君的博客</title>
+  <title>vue子组件修改父组件数据 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夏君的博客">
-<meta property="og:url" content="http://xiajun1996.github.io/archives/2017/index.html">
+  <meta name="description" content="从vue1.0升级至2.0之后 prop的.sync被去除 因此直接在子组件修改父组件的值是会报错的 目的是为了阻止子组件影响父组件的数据那么在vue2.0之后 如何在子组件修改父组件props传过来的值呢？思路是通过子组件$emit发射一个方法1$emit(&apos;increment&apos;,val); 在父组件使用子组件的地方用v-on绑定这个自定义事件 1&amp;lt;button-counter v-on:">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue子组件修改父组件数据">
+<meta property="og:url" content="http://xiajun1996.github.io/2017/08/20/vue子组件修改父组件数据/index.html">
 <meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="从vue1.0升级至2.0之后 prop的.sync被去除 因此直接在子组件修改父组件的值是会报错的 目的是为了阻止子组件影响父组件的数据那么在vue2.0之后 如何在子组件修改父组件props传过来的值呢？思路是通过子组件$emit发射一个方法1$emit(&apos;increment&apos;,val); 在父组件使用子组件的地方用v-on绑定这个自定义事件 1&amp;lt;button-counter v-on:">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T07:05:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夏君的博客">
+<meta name="twitter:title" content="vue子组件修改父组件数据">
+<meta name="twitter:description" content="从vue1.0升级至2.0之后 prop的.sync被去除 因此直接在子组件修改父组件的值是会报错的 目的是为了阻止子组件影响父组件的数据那么在vue2.0之后 如何在子组件修改父组件props传过来的值呢？思路是通过子组件$emit发射一个方法1$emit(&apos;increment&apos;,val); 在父组件使用子组件的地方用v-on绑定这个自定义事件 1&amp;lt;button-counter v-on:">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -60,58 +65,67 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="archive-article-date">
-  <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">Aug 22</time>
+        <section id="main"><article id="post-vue子组件修改父组件数据" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/20/vue子组件修改父组件数据/" class="article-date">
+  <time datetime="2017-08-20T12:18:35.000Z" itemprop="datePublished">2017-08-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+    <h1 class="article-title" itemprop="name">
+      vue子组件修改父组件数据
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/20/vue子组件修改父组件数据/" class="archive-article-date">
-  <time datetime="2017-08-20T12:18:35.000Z" itemprop="datePublished">Aug 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
-    </h1>
-  
+        <p>从vue1.0升级至2.0之后 prop的.sync被去除 因此直接在子组件修改父组件的值是会报错的 目的是为了阻止子组件影响父组件的数据<br>那么在vue2.0之后 如何在子组件修改父组件props传过来的值呢？<br>思路是通过子组件$emit发射一个方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$emit</span>(<span class="string">'increment'</span>,val);</span><br></pre></td></tr></table></figure></p>
+<p>在父组件使用子组件的地方用v-on绑定这个自定义事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button-counter v-on:increment=<span class="string">"incrementTotal"</span>&gt;&lt;/button-counter&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在父组件定义这个方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  incrementTotal(val) &#123;</span><br><span class="line">      this.val = val;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然这种方式可以修改父组件数据，但是官方是不推荐在组件内修改通过props传入的父组件数据，而是推荐使用vuex</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2017/08/20/vue子组件修改父组件数据/" data-id="cjixxb8m50003j0xkuwtczh7j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/22/vue2.0组件间事件派发与接受/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue2.0组件间事件派发与接收
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/24/Singleton单例模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Singleton单例模式</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

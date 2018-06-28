@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://xiajun1996.github.io/blog/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:title" content="夏君的博客">
+<meta property="og:url" content="http://xiajun1996.github.io/index.html">
+<meta property="og:site_name" content="夏君的博客">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="夏君的博客">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +34,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">夏君的博客</a>
       </h1>
       
     </div>
@@ -41,19 +42,19 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">首页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">归档</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="javascript:;" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xiajun1996.github.io/blog"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://xiajun1996.github.io"></form>
       </div>
     </div>
   </div>
@@ -61,9 +62,95 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-夏君的第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-nginx端口转发配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/22/夏君的第一篇博客/" class="article-date">
+    <a href="/2018/06/03/nginx端口转发配置/" class="article-date">
+  <time datetime="2018-06-02T16:00:00.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前将自己的node.js+mongodb项目部署在服务器上<br>启动后端服务后发现后端服务与前端所部署的端口地址不一致时，请求接口返回404<br>所以这里通过nginx将请求的路径进行转发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8081;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         /root/myHero/dist</span><br><span class="line">    index          index.html</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#将/api/* 的请求转发至3000端口的/api/*下</span></span><br><span class="line">    </span><br><span class="line">    location ^~ /api/ &#123;</span><br><span class="line">        proxy_pass http://localhost:3000/api/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设我们的后台API地址是以API开头，location ^~ /api/ 代表nginx将会拦截请求地址中包含”/api/“字样的请求，其实这就是我们的ajax请求路径，拦截到请求之后根据写法会分成两种情况把这个请求转发到 下面 proxy_pass 的地址上。</p>
+<p>如果proxy_pass 的URL以 / 结尾 ，那么请求转发的时候 将 不会 带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/user/login</a></p>
+<p>如果proxy_pass 的URL不以 / 结尾 ，那么请求转发的时候 将 会带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/api/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/api/user/login</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2018/06/03/nginx端口转发配置/" data-id="cjixxb8m90006j0xkc4vhzhdq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-阿里云ECS服务器安装Mongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/" class="article-date">
+  <time datetime="2018-06-02T16:00:00.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间在阿里云购买了一个服务器，正好趁这个机会学习一下如何在服务器上部署node.js+mongodb的项目<br>这里记录下如何在服务器上安装mongodb<br>我的服务器上安装的是centos 7.4系统，一般有两种方式安装<br>1、去官网下载安装包解压后安装<br>2、使用yum包管理系统安装<br>我是通过第二种方式安装的<br>首先配置yun包管理系统<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim vim /etc/yum.repos.d/mongodb-org-3.2.repo</span><br></pre></td></tr></table></figure></p>
+<p>然后里面输入如下内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-3.2]</span><br><span class="line">name=MongoDB Repository</span><br><span class="line">baseurl=https://repo.mongodb.org/yum/redhat/<span class="variable">$releasever</span>/mongodb-org/3.2/x86_64/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
+<p>保存并退出后执行yum安装命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mongodb-org</span><br></pre></td></tr></table></figure></p>
+<p>mongodb就安装完成了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mongod start      <span class="comment">#启动</span></span><br><span class="line">service mongod stop       <span class="comment">#停止</span></span><br><span class="line">service mongod restart    <span class="comment">#重启</span></span><br></pre></td></tr></table></figure></p>
+<p>配置MongoDB服务跟随系统启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig mongod on</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2018/06/03/阿里云ECS服务器安装Mongodb/" data-id="cjixxb8md000aj0xkq25ggw9g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue2.0组件间事件派发与接受" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="article-date">
   <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">2017-08-22</time>
 </a>
     
@@ -75,7 +162,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/夏君的第一篇博客/">夏君的第一篇博客</a>
+      <a class="article-title" href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
     </h1>
   
 
@@ -83,13 +170,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="测试发布"><a href="#测试发布" class="headerlink" title="测试发布"></a>测试发布</h2>
+        <p>在vue的开发中，经常会在两个组件间进行事件的通信<br>在vue1.0中我们使用$dispatch 和 $broadcast<br>child.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$dispatch</span>(<span class="string">'eventName'</span>,this.data);</span><br></pre></td></tr></table></figure></p>
+<p>parent.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">event:&#123;</span><br><span class="line">    <span class="string">'eventName'</span>:<span class="keyword">function</span>(data) &#123;</span><br><span class="line">        // 执行的方法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是在vue2.0中$dispatch 和 $broadcast被弃用，因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱,并且这只适用于父子组件间的通信。<br>官方给出的最简单的升级建议是使用集中的事件处理器,而且也明确说明了 一个空的vue实例就可以做到,因为Vue 实例实现了一个事件分发接口<br>在vue2.0中在初始化vue之前，给data添加一个 名字为eventhub 的空vue对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el: <span class="string">'#app'</span>,</span><br><span class="line">router,</span><br><span class="line">render: h =&gt; h(App),</span><br><span class="line">data: &#123;</span><br><span class="line">    eventHub: new Vue()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>某一个组件内调用事件触发<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$root</span>.eventHub.<span class="variable">$emit</span>(<span class="string">'eventName'</span>, event.target);</span><br></pre></td></tr></table></figure></p>
+<p>另一个组件内调用事件接收, 在组件销毁时接除事件绑定,使用$off方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">created</span></span>() &#123;</span><br><span class="line">  this.<span class="variable">$root</span>.eventHub.<span class="variable">$on</span>(<span class="string">'eventName'</span>,(target) =&gt; &#123;</span><br><span class="line">    this.functionName(target)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">method:&#123;</span><br><span class="line">  functionName(target) &#123;</span><br><span class="line">    console.log(target);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xiajun1996.github.io/blog/2017/08/22/夏君的第一篇博客/" data-id="cj7d5vrev0001rgxk6jwu59t4" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/" data-id="cjiwqbbj30005g9xkx9d50o6w" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
     </footer>
   </div>
   
@@ -97,10 +192,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-vue子组件修改父组件数据" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/21/hello-world/" class="article-date">
-  <time datetime="2017-08-21T02:05:27.000Z" itemprop="datePublished">2017-08-21</time>
+    <a href="/2017/08/20/vue子组件修改父组件数据/" class="article-date">
+  <time datetime="2017-08-20T12:18:35.000Z" itemprop="datePublished">2017-08-20</time>
 </a>
     
   </div>
@@ -111,7 +206,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
     </h1>
   
 
@@ -119,22 +214,265 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>从vue1.0升级至2.0之后 prop的.sync被去除 因此直接在子组件修改父组件的值是会报错的 目的是为了阻止子组件影响父组件的数据<br>那么在vue2.0之后 如何在子组件修改父组件props传过来的值呢？<br>思路是通过子组件$emit发射一个方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$emit</span>(<span class="string">'increment'</span>,val);</span><br></pre></td></tr></table></figure></p>
+<p>在父组件使用子组件的地方用v-on绑定这个自定义事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button-counter v-on:increment=<span class="string">"incrementTotal"</span>&gt;&lt;/button-counter&gt;</span><br></pre></td></tr></table></figure>
+<p>然后在父组件定义这个方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  incrementTotal(val) &#123;</span><br><span class="line">      this.val = val;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然这种方式可以修改父组件数据，但是官方是不推荐在组件内修改通过props传入的父组件数据，而是推荐使用vuex</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xiajun1996.github.io/blog/2017/08/21/hello-world/" data-id="cj7d5vres0000rgxklx1q3uun" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2017/08/20/vue子组件修改父组件数据/" data-id="cjixxb8m50003j0xkuwtczh7j" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Singleton单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/24/Singleton单例模式/" class="article-date">
+  <time datetime="2016-08-24T11:28:45.000Z" itemprop="datePublished">2016-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/24/Singleton单例模式/">Singleton单例模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式是必会的设计模式之一<br>保证一个类仅有一个实例 并提供一个访问他的全局访问点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Singleton &#123;  // 单例类的声明，使用class关键字</span><br><span class="line">    this.instance = null;  //这是表示是否实例化过</span><br><span class="line">    static getInstance = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">      //返回实例方法 static  静态方法 只提供给类调用</span><br><span class="line">      //全局访问点 Singleton.getInstance</span><br><span class="line">      <span class="keyword">if</span>(!this.instance) &#123;</span><br><span class="line">        //实例化前做判断</span><br><span class="line">        this.instace = new Singleton();         </span><br><span class="line">      &#125;    </span><br><span class="line">      //返回实例</span><br><span class="line">      <span class="built_in">return</span> this.instance;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>自执行函数，返回一个匿名函数  并制造了一个闭包。<br>这是一种手法 经常用于生成一个闭包。</p>
+<p>var div;<br>div 由于被匿名函数这个闭包引用 所以他不会按常规的函数调用完成变量销毁来执行<br>而会一直存在于匿名函数定义时创建出来的闭包中<br>正好用来放instance</p>
+<p><a href="https://github.com/xiajun1996/Singleton" target="_blank" rel="noopener">代码地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/24/Singleton单例模式/" data-id="cjixxb8lx0001j0xk5zpiw2di" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-node.js 异步同步及文件操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/node.js 异步同步及文件操作/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/node.js 异步同步及文件操作/">node.js 异步同步及文件操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一     ES6<br>ES6也叫2015 是javascript最新的版本，有着丰富的新特性。<br>ES5是目前所有浏览器都支持的javascript版本<br>ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。</p>
+<p>字符串模板<br>ES5里字符串的拼接很烦<br>ES6推出字符串模板功能<br><code>${变量}</code><br>__dirname  node.js当前文件目录地址</p>
+<p>const 常量声明<br>let 块域作用域变量，替代var</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(<span class="string">'fs'</span>)</span><br></pre></td></tr></table></figure>
+<p>require node.js 引入文件，库<br>fs 是node.js 文件系统操作库，为我们提供读写文件的相应功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const file = fs.readFileSync(`<span class="variable">$&#123;__dirname&#125;</span>/<span class="variable">$&#123;filename&#125;</span>`);</span><br></pre></td></tr></table></figure></p>
+<p>readFileSync fs读取文件的api，一定会等到读取完文件才执行下一条语句<br>readFile是非阻塞的， 它会立即返回让程序继续执行。而立即这点时间对I/O操作来说远远不够，它会返回undefined</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/" data-id="cjixxb8lk0000j0xkjezpe1o4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sass学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/sass学习笔记/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/sass学习笔记/">sass学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一 sass是css的预编译工具<br>使用sass的语法来写scss文件 sass工具会帮助我们转换成css文件</p>
+<p>二 为什么要sass<br> 更快，模块化，流程化，sass已经是前端工具库里的必备<br> sass主要用于提高s生产力</p>
+<p> 三 表现<br> 文件格式.scss ，有自己语法<br> sass直接支持css文件 ，将css文件改后缀为scss可行 但不会这么做</p>
+<p> 四 命令<br> sass是由ruby社区发明的工具 基于命令行 使用sass命令编译<br> scss文件为css文件<br> 什么叫编译？ 即一句一句的把scss代码翻译成css代码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass sass/style.scss:css/style.css</span><br></pre></td></tr></table></figure>
+<p> sass命令为编译命令<br> ：是sass文件和css文件的分隔符 就是将相应的scss文件编译为css文件<br> 即在sass项目目录下运行该命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch sass:css</span><br></pre></td></tr></table></figure>
+<p> sass监听命令 ：分隔的是scss及css的文件夹<br> 只要sass文件夹下的任意scss文件夹发生改变，将立即编译到对应的css文件夹里<br>如果这个css文件不存在，那么就创建，scss文件名与css文件同名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sass --watch sass:css --style nested：嵌套缩进的css代码，它是默认值。</span><br><span class="line">sass --watch sass:css --style expanded：没有缩进的、扩展的css代码。</span><br><span class="line">sass --watch sass:css --style compact：简洁格式的css代码。</span><br><span class="line">sass --watch sass:css --style compressed：压缩后的css代码</span><br></pre></td></tr></table></figure>
+<p>style 设置输出的类型<br>compressed 建议最后出都用compressed文件更小 传输更快<br>css代码只是给浏览器执行的 用户并不要看css代码 所以应该压缩<br>写代码的时候写的是scss文件 是良好格式的sass编译输出的压缩<br>过后的css文件，开发时时不需要处理的，由sass自动处理</p>
+<p>五 变量<br>声明变量 一般在开始的地方<br>$variable_name:value;以$符号开始，键值对<br>在css值的地方使用变量，$variable_name</p>
+<p>六 嵌套<br>解决因为css选择器嵌套提高生产力。<br>会自动将嵌套的代码拿出来加上外层的选择器<br>以后，我们在写某个独立的模块或样式组件时 可以将整个独立的功能块组合样式写在一个嵌套里<br>&amp; 引用父级 经常用于a:伪状态 或对父元素选择器的引用<br>在复杂的嵌套里，可以直接使用父元素选择器文本替换来理解。</p>
+<p>嵌套属性<br>用于复合属性 可以将相同的部分省略 用{}放在一起 可以不用- 直接接后半部分<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  font: &#123;</span><br><span class="line">    family:Helvetica,sans-serif;</span><br><span class="line">    size:15px;</span><br><span class="line">    weight:normal;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种写法直接在一条css规则后面接上{} 表示复用该条属性属性名设置其它子样式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">   border: 1px solid <span class="comment">#000 &#123;</span></span><br><span class="line">   left: 0;</span><br><span class="line">   right: 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>mixin<br>混合 相当于JavaScript里面的函数 我们可以使用mixin 来封装一些功能css代码段<br>并且通过mixin达到复用 mixin用于css封装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@mixin name(arg1,arg2...) &#123;</span><br><span class="line">        //css rules</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@include name;</span><br></pre></td></tr></table></figure></p>
+<p>mixin支持内部嵌套 编译后会自动在前面加上引用的类名作为副选择器</p>
+<p>带参数的mixin使用起来跟JavaScript函数是一样<br>定义参数名，代码内使用参数名占位<br>调用时按照顺序传递参数</p>
+<p>sass拥有一些内置的方便函数 darken($color,%); 将得到$color加深%后的颜色</p>
+<p>扩展 @extend<br>我们可以使用继承或者叫扩展来减少重复的工作<br>让一个类继承领一个类的所有样式</p>
+<p>@extend 选择器<br>以前在css里大量使用，操作符的时候 应该使用@extend<br>先给一个选择器写基本样式<br>其他的选择器使用@extend包含这些样式<br>sass的@extend输出的结果，就是使用这样的群组选择器，来保证让使用继承的选择器<br>拥有它继承的选择器还有相关的选择器里面定义的样式</p>
+<p>@import 导入文件<br>用于实现css模块化编程，即将开发功能<br>按照模块分不同文件编写，最后由一个文件引入并编译称为一个css文件<br>好处：<br>1.分模块开发 代码更易维护<br>2.可以实现多人协作开发，每个人负责自己编写的模块<br>其他人可以@import引入<br>3.代码最后被合并为一个文件 并使用–style compressed压缩 最后分发<br>这是网站基于sass开发的基本工作流程</p>
+<p>partial 模块，以下划线开始命名  文件将不会被单独编译</p>
+<p><a href="https://github.com/xiajun1996/sass-site" target="_blank" rel="noopener">代码地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/10/sass学习笔记/" data-id="cjixxb8m80004j0xkl41ibhen" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-移动端按比例布局元素的笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/24/移动端按比例布局元素的笔记/" class="article-date">
+  <time datetime="2016-04-23T16:00:00.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/24/移动端按比例布局元素的笔记/">使用Flexible实现手淘H5页面的终端适配</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。</p>
+<p>1.移动设备上的px 像素不等于设备的物理像素。<br>iphone6作为开发标准的设备 物理宽度375  是主流的高端机型<br>iphone5 物理宽度320<br>iphone6plus 物理宽度为414<br>android 设备物理宽度在iphone设备的宽度范围之内或附近。<br>物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。<br>retina屏一个物理像素等于两个css像素。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>移动端页面首先必须声明viewport属性，告知页面我们使用设备的宽度等于我们处理页面的整宽度。</p>
+<p>二、淘宝flexible解决方案，所有移动设备全兼容，赞<br>1.首先，引入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2.会给html标签添加data-dpr=“2” 根据设备添加屏幕像素比，区分普通屏幕retina屏 3倍retina屏<br>html font-size会设置成为屏幕宽度的1/10，不同设备不一样，但是都是1/10<br>3.rem技术方案<br>所有元素的尺寸大小，边距，行高等都使用rem 相对宽度来表达<br>整个页面的宽度是10rem，1rem就等于屏幕宽度的1/10.这样就为不同移动设备的页面开发带来方便的等比缩放能力，所有元素的大小设定都使用针对html标签的font-size比例来计算<br>1 rem=html font-size = screen width/10 = flexible.js提供</p>
+<p>三、如何计算元素大小，宽高<br>1rem=屏幕宽度/10<br>在现实之中 设计师是按照750px的宽度来设计页面的。<br>因为理想的机型是iphone6 375dp的物理像素宽，retina屏就是750（css）<br>750px=10rem 针对设计稿</p>
+<p>我们使用ps量出的像素/750 *10=最终的rem<br>photoshop像素/75=rem</p>
+<p>来自: <a href="http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html" target="_blank" rel="noopener">使用Flexible实现手淘H5页面的终端适配</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/04/24/移动端按比例布局元素的笔记/" data-id="cjixxb8mb0009j0xkt1oqqfve" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-伪元素实现关闭按钮和添加按钮效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" class="article-date">
+  <time datetime="2016-04-21T16:00:00.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/">伪元素实现关闭按钮和添加按钮效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、伪元素</p>
+<p>没有标签，由css声明在html文档中有明确位置。<br>使用::声明<br>::before 元素内容开始前的占位符元素。<br>::after  元素内容结束前的占位符元素。<br>具有css设置能力<br>必须属性 content:’’; 伪元素的内容，可为空 但是必须设置 如果没有设置 则伪元素不会出现在html中。</p>
+<p>二、关闭按钮实现技巧</p>
+<p>伪元素先呈现为一条线<br>width:100%;<br>height:1.5px;<br>background:#333;<br>使用了css技巧，画出了一根线<br>::before ::after两个伪元素就有了两根线</p>
+<p>三、定位</p>
+<p>把两根线定位到垂直居中<br>将容器声明为relative 告知内部元素 可相对于它进行绝对定位。<br>position:relative；<br>伪元素绝对定位<br>positive:absolute; top:50%; left:0;<br>距离父元素上部50%，那么垂直方向就基本居中了。</p>
+<p>四、形成×的效果</p>
+<p>将两根旋转一下就造成了角度。<br>transform:rotate(45deg);<br>transform:rotate(135deg);<br>transform css3元素变形属性<br>rotate元素旋转角度属性<br>deg 角度单位</p>
+<p>五、形成+的效果</p>
+<p>hover 状态上改变rotate的值<br>:hover::before 一个是状态 一个是伪元素<br>transform：rotate(90deg);<br>transform：rotate(180deg);</p>
+<p>六、过渡效果</p>
+<p>css3属性值的变化，支持使用过滤效果。<br>transition:transform .2s;<br>transition css3动画过渡属性，语法；<br>transition:property1 duration，property2 duration。。。<br>property 是支持过渡的css属性名 duration 是执行时间<br>可以接连设置多个过渡效果。 property设置为all 那么将为元素的任意所有css属性规则的改变使用过渡效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" data-id="cjixxb8mf000cj0xku3klbvz4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
     </footer>
   </div>
   
@@ -148,18 +486,29 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rem/">rem</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
 
-  
-    
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -172,11 +521,23 @@
       <ul>
         
           <li>
-            <a href="/2017/08/22/夏君的第一篇博客/">夏君的第一篇博客</a>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
           </li>
         
           <li>
-            <a href="/2017/08/21/hello-world/">Hello World</a>
+            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/24/Singleton单例模式/">Singleton单例模式</a>
           </li>
         
       </ul>
@@ -191,7 +552,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 John Doe<br>
+      &copy; 2018 夏君<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -199,22 +560,21 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
 </nav>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
 
+    
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+          
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
+            <script src="/js/script.js"></script>
   </div>
 </body>
 </html>

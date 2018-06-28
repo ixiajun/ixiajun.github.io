@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>sass学习笔记 | 夏君的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一 sass是css的预编译工具使用sass的语法来写scss文件 sass工具会帮助我们转换成css文件 二 为什么要sass 更快，模块化，流程化，sass已经是前端工具库里的必备 sass主要用于提高s生产力  三 表现 文件格式.scss ，有自己语法 sass直接支持css文件 ，将css文件改后缀为scss可行 但不会这么做  四 命令 sass是由ruby社区发明的工具 基于命令行">
+<meta name="keywords" content="sass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass学习笔记">
+<meta property="og:url" content="http://xiajun1996.github.io/2016/08/10/sass学习笔记/index.html">
+<meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="一 sass是css的预编译工具使用sass的语法来写scss文件 sass工具会帮助我们转换成css文件 二 为什么要sass 更快，模块化，流程化，sass已经是前端工具库里的必备 sass主要用于提高s生产力  三 表现 文件格式.scss ，有自己语法 sass直接支持css文件 ，将css文件改后缀为scss可行 但不会这么做  四 命令 sass是由ruby社区发明的工具 基于命令行">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T10:03:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sass学习笔记">
+<meta name="twitter:description" content="一 sass是css的预编译工具使用sass的语法来写scss文件 sass工具会帮助我们转换成css文件 二 为什么要sass 更快，模块化，流程化，sass已经是前端工具库里的必备 sass主要用于提高s生产力  三 表现 文件格式.scss ，有自己语法 sass直接支持css文件 ，将css文件改后缀为scss可行 但不会这么做  四 命令 sass是由ruby社区发明的工具 基于命令行">
+  
+    <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夏君的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="javascript:;" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://xiajun1996.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sass学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/sass学习笔记/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sass学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一 sass是css的预编译工具<br>使用sass的语法来写scss文件 sass工具会帮助我们转换成css文件</p>
+<p>二 为什么要sass<br> 更快，模块化，流程化，sass已经是前端工具库里的必备<br> sass主要用于提高s生产力</p>
+<p> 三 表现<br> 文件格式.scss ，有自己语法<br> sass直接支持css文件 ，将css文件改后缀为scss可行 但不会这么做</p>
+<p> 四 命令<br> sass是由ruby社区发明的工具 基于命令行 使用sass命令编译<br> scss文件为css文件<br> 什么叫编译？ 即一句一句的把scss代码翻译成css代码</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass sass/style.scss:css/style.css</span><br></pre></td></tr></table></figure>
+<p> sass命令为编译命令<br> ：是sass文件和css文件的分隔符 就是将相应的scss文件编译为css文件<br> 即在sass项目目录下运行该命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch sass:css</span><br></pre></td></tr></table></figure>
+<p> sass监听命令 ：分隔的是scss及css的文件夹<br> 只要sass文件夹下的任意scss文件夹发生改变，将立即编译到对应的css文件夹里<br>如果这个css文件不存在，那么就创建，scss文件名与css文件同名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sass --watch sass:css --style nested：嵌套缩进的css代码，它是默认值。</span><br><span class="line">sass --watch sass:css --style expanded：没有缩进的、扩展的css代码。</span><br><span class="line">sass --watch sass:css --style compact：简洁格式的css代码。</span><br><span class="line">sass --watch sass:css --style compressed：压缩后的css代码</span><br></pre></td></tr></table></figure>
+<p>style 设置输出的类型<br>compressed 建议最后出都用compressed文件更小 传输更快<br>css代码只是给浏览器执行的 用户并不要看css代码 所以应该压缩<br>写代码的时候写的是scss文件 是良好格式的sass编译输出的压缩<br>过后的css文件，开发时时不需要处理的，由sass自动处理</p>
+<p>五 变量<br>声明变量 一般在开始的地方<br>$variable_name:value;以$符号开始，键值对<br>在css值的地方使用变量，$variable_name</p>
+<p>六 嵌套<br>解决因为css选择器嵌套提高生产力。<br>会自动将嵌套的代码拿出来加上外层的选择器<br>以后，我们在写某个独立的模块或样式组件时 可以将整个独立的功能块组合样式写在一个嵌套里<br>&amp; 引用父级 经常用于a:伪状态 或对父元素选择器的引用<br>在复杂的嵌套里，可以直接使用父元素选择器文本替换来理解。</p>
+<p>嵌套属性<br>用于复合属性 可以将相同的部分省略 用{}放在一起 可以不用- 直接接后半部分<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  font: &#123;</span><br><span class="line">    family:Helvetica,sans-serif;</span><br><span class="line">    size:15px;</span><br><span class="line">    weight:normal;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种写法直接在一条css规则后面接上{} 表示复用该条属性属性名设置其它子样式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">   border: 1px solid <span class="comment">#000 &#123;</span></span><br><span class="line">   left: 0;</span><br><span class="line">   right: 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>mixin<br>混合 相当于JavaScript里面的函数 我们可以使用mixin 来封装一些功能css代码段<br>并且通过mixin达到复用 mixin用于css封装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@mixin name(arg1,arg2...) &#123;</span><br><span class="line">        //css rules</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@include name;</span><br></pre></td></tr></table></figure></p>
+<p>mixin支持内部嵌套 编译后会自动在前面加上引用的类名作为副选择器</p>
+<p>带参数的mixin使用起来跟JavaScript函数是一样<br>定义参数名，代码内使用参数名占位<br>调用时按照顺序传递参数</p>
+<p>sass拥有一些内置的方便函数 darken($color,%); 将得到$color加深%后的颜色</p>
+<p>扩展 @extend<br>我们可以使用继承或者叫扩展来减少重复的工作<br>让一个类继承领一个类的所有样式</p>
+<p>@extend 选择器<br>以前在css里大量使用，操作符的时候 应该使用@extend<br>先给一个选择器写基本样式<br>其他的选择器使用@extend包含这些样式<br>sass的@extend输出的结果，就是使用这样的群组选择器，来保证让使用继承的选择器<br>拥有它继承的选择器还有相关的选择器里面定义的样式</p>
+<p>@import 导入文件<br>用于实现css模块化编程，即将开发功能<br>按照模块分不同文件编写，最后由一个文件引入并编译称为一个css文件<br>好处：<br>1.分模块开发 代码更易维护<br>2.可以实现多人协作开发，每个人负责自己编写的模块<br>其他人可以@import引入<br>3.代码最后被合并为一个文件 并使用–style compressed压缩 最后分发<br>这是网站基于sass开发的基本工作流程</p>
+<p>partial 模块，以下划线开始命名  文件将不会被单独编译</p>
+<p><a href="https://github.com/xiajun1996/sass-site" target="_blank" rel="noopener">代码地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/10/sass学习笔记/" data-id="cjixxb8m80004j0xkl41ibhen" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/10/node.js 异步同步及文件操作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          node.js 异步同步及文件操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/24/移动端按比例布局元素的笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用Flexible实现手淘H5页面的终端适配</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rem/">rem</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/24/Singleton单例模式/">Singleton单例模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 夏君<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+    
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+          
+
+            <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

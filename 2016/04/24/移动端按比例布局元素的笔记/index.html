@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Flexible实现手淘H5页面的终端适配 | 夏君的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
+<meta name="keywords" content="rem,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Flexible实现手淘H5页面的终端适配">
+<meta property="og:url" content="http://xiajun1996.github.io/2016/04/24/移动端按比例布局元素的笔记/index.html">
+<meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T07:12:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Flexible实现手淘H5页面的终端适配">
+<meta name="twitter:description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
+  
+    <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">夏君的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="javascript:;" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://xiajun1996.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-移动端按比例布局元素的笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/24/移动端按比例布局元素的笔记/" class="article-date">
+  <time datetime="2016-04-23T16:00:00.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Flexible实现手淘H5页面的终端适配
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。</p>
+<p>1.移动设备上的px 像素不等于设备的物理像素。<br>iphone6作为开发标准的设备 物理宽度375  是主流的高端机型<br>iphone5 物理宽度320<br>iphone6plus 物理宽度为414<br>android 设备物理宽度在iphone设备的宽度范围之内或附近。<br>物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。<br>retina屏一个物理像素等于两个css像素。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>移动端页面首先必须声明viewport属性，告知页面我们使用设备的宽度等于我们处理页面的整宽度。</p>
+<p>二、淘宝flexible解决方案，所有移动设备全兼容，赞<br>1.首先，引入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2.会给html标签添加data-dpr=“2” 根据设备添加屏幕像素比，区分普通屏幕retina屏 3倍retina屏<br>html font-size会设置成为屏幕宽度的1/10，不同设备不一样，但是都是1/10<br>3.rem技术方案<br>所有元素的尺寸大小，边距，行高等都使用rem 相对宽度来表达<br>整个页面的宽度是10rem，1rem就等于屏幕宽度的1/10.这样就为不同移动设备的页面开发带来方便的等比缩放能力，所有元素的大小设定都使用针对html标签的font-size比例来计算<br>1 rem=html font-size = screen width/10 = flexible.js提供</p>
+<p>三、如何计算元素大小，宽高<br>1rem=屏幕宽度/10<br>在现实之中 设计师是按照750px的宽度来设计页面的。<br>因为理想的机型是iphone6 375dp的物理像素宽，retina屏就是750（css）<br>750px=10rem 针对设计稿</p>
+<p>我们使用ps量出的像素/750 *10=最终的rem<br>photoshop像素/75=rem</p>
+<p>来自: <a href="http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html" target="_blank" rel="noopener">使用Flexible实现手淘H5页面的终端适配</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/04/24/移动端按比例布局元素的笔记/" data-id="cjixxb8mb0009j0xkt1oqqfve" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rem/">rem</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/10/sass学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sass学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">伪元素实现关闭按钮和添加按钮效果</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rem/">rem</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/24/Singleton单例模式/">Singleton单例模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 夏君<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+    
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+        <script src="/fancybox/jquery.fancybox.pack.js"></script>
+          
+
+            <script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

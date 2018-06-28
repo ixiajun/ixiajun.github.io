@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017 | 夏君的博客</title>
+  <title>node.js 异步同步及文件操作 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="夏君的博客">
-<meta property="og:url" content="http://xiajun1996.github.io/archives/2017/index.html">
+  <meta name="description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js 异步同步及文件操作">
+<meta property="og:url" content="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/index.html">
 <meta property="og:site_name" content="夏君的博客">
+<meta property="og:description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-27T07:15:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夏君的博客">
+<meta name="twitter:title" content="node.js 异步同步及文件操作">
+<meta name="twitter:description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -60,58 +65,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="archive-article-date">
-  <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">Aug 22</time>
+        <section id="main"><article id="post-node.js 异步同步及文件操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/node.js 异步同步及文件操作/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
+    <h1 class="article-title" itemprop="name">
+      node.js 异步同步及文件操作
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/20/vue子组件修改父组件数据/" class="archive-article-date">
-  <time datetime="2017-08-20T12:18:35.000Z" itemprop="datePublished">Aug 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
-    </h1>
-  
+        <p>一     ES6<br>ES6也叫2015 是javascript最新的版本，有着丰富的新特性。<br>ES5是目前所有浏览器都支持的javascript版本<br>ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。</p>
+<p>字符串模板<br>ES5里字符串的拼接很烦<br>ES6推出字符串模板功能<br><code>${变量}</code><br>__dirname  node.js当前文件目录地址</p>
+<p>const 常量声明<br>let 块域作用域变量，替代var</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(<span class="string">'fs'</span>)</span><br></pre></td></tr></table></figure>
+<p>require node.js 引入文件，库<br>fs 是node.js 文件系统操作库，为我们提供读写文件的相应功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const file = fs.readFileSync(`<span class="variable">$&#123;__dirname&#125;</span>/<span class="variable">$&#123;filename&#125;</span>`);</span><br></pre></td></tr></table></figure></p>
+<p>readFileSync fs读取文件的api，一定会等到读取完文件才执行下一条语句<br>readFile是非阻塞的， 它会立即返回让程序继续执行。而立即这点时间对I/O操作来说远远不够，它会返回undefined</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/" data-id="cjixxb8lk0000j0xkjezpe1o4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/24/Singleton单例模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Singleton单例模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/10/sass学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sass学习笔记</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
