@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-create-react-app的webpack配置及项目部署" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-create-react-app的webpack配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/10/create-react-app的webpack配置及项目部署/" class="article-date">
-  <time datetime="2018-09-09T16:00:00.000Z" itemprop="datePublished">2018-09-10</time>
+    <a href="/2018/09/04/create-react-app的webpack配置/" class="article-date">
+  <time datetime="2018-09-03T16:00:00.000Z" itemprop="datePublished">2018-09-04</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/10/create-react-app的webpack配置及项目部署/">create-react-app的webpack配置及项目部署</a>
+      <a class="article-title" href="/2018/09/04/create-react-app的webpack配置/">create-react-app的webpack配置</a>
     </h1>
   
 
@@ -87,12 +87,15 @@
         <p>最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。</p>
 <p>首先通过react的脚手架初始化项目<br>先全局安装react脚手架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure></p>
 <p>安装完之后初始化项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-app</span><br><span class="line">cd my-app</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
-<p>react脚手架和vue-cli有所不同<br>create-react-app生成的<br><img src="/2018/09/10/create-react-app的webpack配置及项目部署/1.png" alt="logo"></p>
+<p>react脚手架和vue-cli有所不同<br>create-react-app生成的package的script配置如下<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png" alt=""><br>start：启动本地项目<br>build：打包项目<br>test：运行测试<br>eject：弹射<br>create-react-app默认的webpack的配置不和vue-cli一样直接提供修改  如果需要自己配置webpck的话就要用到eject这个操作了，但是这个操作是不可逆的，即运行之后就不能撤回了。  默认配置中没有集成css预处理器， 于是在这里我就执行了eject，并安装了sass</p>
+<p>执行npm run eject后，项目生成了一个config文件夹，里面就是webpack的配置了<br>在webpack.config.dev.js和webpack.config.pro.js的配置文件里同时添加如下配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        loaders: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'sass-loader'</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 exclude 中添加 /.scss$/,<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png" alt=""></p>
+<p>这样即可在项目中使用sscs来写样式了！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/10/create-react-app的webpack配置及项目部署/" data-id="cjlw0ga920000vdxkbemb5977" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw1mmn000006yxknweazznk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/">react-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -563,7 +566,7 @@
       <ul>
         
           <li>
-            <a href="/2018/09/10/create-react-app的webpack配置及项目部署/">create-react-app的webpack配置及项目部署</a>
+            <a href="/2018/09/04/create-react-app的webpack配置/">create-react-app的webpack配置</a>
           </li>
         
           <li>

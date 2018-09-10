@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>node.js 异步同步及文件操作 | 夏君的博客</title>
+  <title>create-react-app的webpack配置 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
-<meta name="keywords" content="node.js">
+  <meta name="description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
+<meta name="keywords" content="react,react-router,webpack,nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js 异步同步及文件操作">
-<meta property="og:url" content="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/index.html">
+<meta property="og:title" content="create-react-app的webpack配置">
+<meta property="og:url" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/index.html">
 <meta property="og:site_name" content="夏君的博客">
-<meta property="og:description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
+<meta property="og:description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-27T07:15:47.000Z">
+<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png">
+<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png">
+<meta property="og:updated_time" content="2018-09-10T08:48:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js 异步同步及文件操作">
-<meta name="twitter:description" content="一     ES6ES6也叫2015 是javascript最新的版本，有着丰富的新特性。ES5是目前所有浏览器都支持的javascript版本ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。 字符串模板ES5里字符串的拼接很烦ES6推出字符串模板功能${变量}__dirname  node.js">
+<meta name="twitter:title" content="create-react-app的webpack配置">
+<meta name="twitter:description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
+<meta name="twitter:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -65,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-node.js 异步同步及文件操作" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-create-react-app的webpack配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/10/node.js 异步同步及文件操作/" class="article-date">
-  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+    <a href="/2018/09/04/create-react-app的webpack配置/" class="article-date">
+  <time datetime="2018-09-03T16:00:00.000Z" itemprop="datePublished">2018-09-04</time>
 </a>
     
   </div>
@@ -79,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      node.js 异步同步及文件操作
+      create-react-app的webpack配置
     </h1>
   
 
@@ -87,20 +90,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一     ES6<br>ES6也叫2015 是javascript最新的版本，有着丰富的新特性。<br>ES5是目前所有浏览器都支持的javascript版本<br>ES6只有chrome等一些浏览器的最新版才支持 但支持的很快 因为有babael这样的javascript的贬义工具 ES6一快速大量的用于生产中。</p>
-<p>字符串模板<br>ES5里字符串的拼接很烦<br>ES6推出字符串模板功能<br><code>${变量}</code><br>__dirname  node.js当前文件目录地址</p>
-<p>const 常量声明<br>let 块域作用域变量，替代var</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(<span class="string">'fs'</span>)</span><br></pre></td></tr></table></figure>
-<p>require node.js 引入文件，库<br>fs 是node.js 文件系统操作库，为我们提供读写文件的相应功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const file = fs.readFileSync(`<span class="variable">$&#123;__dirname&#125;</span>/<span class="variable">$&#123;filename&#125;</span>`);</span><br></pre></td></tr></table></figure></p>
-<p>readFileSync fs读取文件的api，一定会等到读取完文件才执行下一条语句<br>readFile是非阻塞的， 它会立即返回让程序继续执行。而立即这点时间对I/O操作来说远远不够，它会返回undefined</p>
+        <p>最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。</p>
+<p>首先通过react的脚手架初始化项目<br>先全局安装react脚手架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure></p>
+<p>安装完之后初始化项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-app</span><br><span class="line">cd my-app</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
+<p>react脚手架和vue-cli有所不同<br>create-react-app生成的package的script配置如下<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png" alt=""><br>start：启动本地项目<br>build：打包项目<br>test：运行测试<br>eject：弹射<br>create-react-app默认的webpack的配置不和vue-cli一样直接提供修改  如果需要自己配置webpck的话就要用到eject这个操作了，但是这个操作是不可逆的，即运行之后就不能撤回了。  默认配置中没有集成css预处理器， 于是在这里我就执行了eject，并安装了sass</p>
+<p>执行npm run eject后，项目生成了一个config文件夹，里面就是webpack的配置了<br>在webpack.config.dev.js和webpack.config.pro.js的配置文件里同时添加如下配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        loaders: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'sass-loader'</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 exclude 中添加 /.scss$/,<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png" alt=""></p>
+<p>这样即可在项目中使用sscs来写样式了！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/" data-id="cjlw0ga9h0003vdxkgk6341kz" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw1mmn000006yxknweazznk" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/">react-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
     </footer>
   </div>
@@ -108,19 +112,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/24/Singleton单例模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Singleton单例模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/08/10/sass学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/06/03/nginx端口转发配置/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sass学习笔记</div>
+      <div class="article-nav-title">nginx端口转发配置</div>
     </a>
   
 </nav>
