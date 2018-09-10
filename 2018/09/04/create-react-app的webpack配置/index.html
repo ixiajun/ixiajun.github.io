@@ -6,7 +6,7 @@
   <title>create-react-app的webpack配置 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
-<meta name="keywords" content="react,react-router,webpack,nginx">
+<meta name="keywords" content="react,webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="create-react-app的webpack配置">
 <meta property="og:url" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/index.html">
@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png">
 <meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png">
-<meta property="og:updated_time" content="2018-09-10T08:48:50.000Z">
+<meta property="og:updated_time" content="2018-09-10T08:54:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="create-react-app的webpack配置">
 <meta name="twitter:description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
@@ -101,10 +101,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw1mmn000006yxknweazznk" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw3c9aa00012xxkh9jmtt1g" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/">react-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
     </footer>
   </div>
@@ -112,10 +112,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/09/06/react-router按需引入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          react-router按需引入
+        
+      </div>
+    </a>
   
-    <a href="/2018/06/03/nginx端口转发配置/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">nginx端口转发配置</div>
+      <div class="article-nav-title">阿里云ECS服务器安装mongodb</div>
     </a>
   
 </nav>
@@ -141,7 +150,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/react/" style="font-size: 20px;">react</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/rem/" style="font-size: 10px;">rem</a> <a href="/tags/sass/" style="font-size: 10px;">sass</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -163,11 +172,15 @@
       <ul>
         
           <li>
-            <a href="/2018/09/04/create-react-app的webpack配置/">create-react-app的webpack配置</a>
+            <a href="/2018/09/10/react项目的部署/">react项目的部署</a>
           </li>
         
           <li>
-            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+            <a href="/2018/09/06/react-router按需引入/">react-router按需引入</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/create-react-app的webpack配置/">create-react-app的webpack配置</a>
           </li>
         
           <li>
@@ -175,11 +188,7 @@
           </li>
         
           <li>
-            <a href="/2017/08/22/vue2.0组件间事件派发与接受/">vue2.0组件间事件派发与接收</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/20/vue子组件修改父组件数据/">vue子组件修改父组件数据</a>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
           </li>
         
       </ul>

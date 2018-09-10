@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vue2.0组件间事件派发与接收 | 夏君的博客</title>
+  <title>react-router按需引入 | 夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
-<meta name="keywords" content="vue">
+  <meta name="description" content="react-router和vue-router一样都是构建单页面应用，但是应用太大时，webpack将所有路由文件都打包在一个文件里面，导致首页加载时间变的很慢。于是就利用webpack的code-split将不同路由文件单独打包，实现页面按需引入之前引入路由都是用1import Home from &amp;apos;./pages/Home.js&amp;apos; 现在通过Router的getCompone">
+<meta name="keywords" content="react,webpack,react-router">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue2.0组件间事件派发与接收">
-<meta property="og:url" content="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/index.html">
+<meta property="og:title" content="react-router按需引入">
+<meta property="og:url" content="http://xiajun1996.github.io/2018/09/06/react-router按需引入/index.html">
 <meta property="og:site_name" content="夏君的博客">
-<meta property="og:description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
+<meta property="og:description" content="react-router和vue-router一样都是构建单页面应用，但是应用太大时，webpack将所有路由文件都打包在一个文件里面，导致首页加载时间变的很慢。于是就利用webpack的code-split将不同路由文件单独打包，实现页面按需引入之前引入路由都是用1import Home from &amp;apos;./pages/Home.js&amp;apos; 现在通过Router的getCompone">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-27T07:00:34.000Z">
+<meta property="og:updated_time" content="2018-09-10T09:05:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue2.0组件间事件派发与接收">
-<meta name="twitter:description" content="在vue的开发中，经常会在两个组件间进行事件的通信在vue1.0中我们使用$dispatch 和 $broadcastchild.vue:1this.$dispatch(&apos;eventName&apos;,this.data); parent.vue:12345event:&amp;#123;    &apos;eventName&apos;:function(data) &amp;#123;        // 执行的方法    &amp;#125;">
+<meta name="twitter:title" content="react-router按需引入">
+<meta name="twitter:description" content="react-router和vue-router一样都是构建单页面应用，但是应用太大时，webpack将所有路由文件都打包在一个文件里面，导致首页加载时间变的很慢。于是就利用webpack的code-split将不同路由文件单独打包，实现页面按需引入之前引入路由都是用1import Home from &amp;apos;./pages/Home.js&amp;apos; 现在通过Router的getCompone">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-vue2.0组件间事件派发与接受" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-react-router按需引入" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/22/vue2.0组件间事件派发与接受/" class="article-date">
-  <time datetime="2017-08-22T11:28:45.000Z" itemprop="datePublished">2017-08-22</time>
+    <a href="/2018/09/06/react-router按需引入/" class="article-date">
+  <time datetime="2018-09-05T16:00:00.000Z" itemprop="datePublished">2018-09-06</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      vue2.0组件间事件派发与接收
+      react-router按需引入
     </h1>
   
 
@@ -87,20 +87,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在vue的开发中，经常会在两个组件间进行事件的通信<br>在vue1.0中我们使用$dispatch 和 $broadcast<br>child.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$dispatch</span>(<span class="string">'eventName'</span>,this.data);</span><br></pre></td></tr></table></figure></p>
-<p>parent.vue:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">event:&#123;</span><br><span class="line">    <span class="string">'eventName'</span>:<span class="keyword">function</span>(data) &#123;</span><br><span class="line">        // 执行的方法</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>但是在vue2.0中$dispatch 和 $broadcast被弃用，因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱,并且这只适用于父子组件间的通信。<br>官方给出的最简单的升级建议是使用集中的事件处理器,而且也明确说明了 一个空的vue实例就可以做到,因为Vue 实例实现了一个事件分发接口<br>在vue2.0中在初始化vue之前，给data添加一个 名字为eventhub 的空vue对象</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el: <span class="string">'#app'</span>,</span><br><span class="line">router,</span><br><span class="line">render: h =&gt; h(App),</span><br><span class="line">data: &#123;</span><br><span class="line">    eventHub: new Vue()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>某一个组件内调用事件触发<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$root</span>.eventHub.<span class="variable">$emit</span>(<span class="string">'eventName'</span>, event.target);</span><br></pre></td></tr></table></figure></p>
-<p>另一个组件内调用事件接收, 在组件销毁时接除事件绑定,使用$off方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">created</span></span>() &#123;</span><br><span class="line">  this.<span class="variable">$root</span>.eventHub.<span class="variable">$on</span>(<span class="string">'eventName'</span>,(target) =&gt; &#123;</span><br><span class="line">    this.functionName(target)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br><span class="line">method:&#123;</span><br><span class="line">  functionName(target) &#123;</span><br><span class="line">    console.log(target);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>react-router和vue-router一样都是构建单页面应用，但是应用太大时，webpack将所有路由文件都打包在一个文件里面，导致首页加载时间变的很慢。于是就利用webpack的code-split将不同路由文件单独打包，实现页面按需引入<br>之前引入路由都是用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Home from &apos;./pages/Home.js&apos;</span><br></pre></td></tr></table></figure></p>
+<p>现在通过Router的getComponents属性异步加载React组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const getHomePage = (location, callback) =&gt; &#123;</span><br><span class="line">  require.ensure([], function(require) &#123;</span><br><span class="line">    callback(null, require(&apos;./pages/Home.js&apos;).default)</span><br><span class="line">  &#125;, &apos;home)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Routes函数使用getComponent而不是component属性来使用异步加载页面的函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const Routes = () =&gt; (</span><br><span class="line">  &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">    &lt;Route path=&quot;/&quot; component=&#123;App&#125;&gt;</span><br><span class="line">      &lt;Route path=&quot;/home&quot; getComponent=&#123;getHomePage&#125;&gt;</span><br><span class="line">      &lt;/Route&gt;</span><br><span class="line">    &lt;/Route&gt;</span><br><span class="line">  &lt;/Router&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>这样webpack就会把各组件打包称单独的js文件， 实现动态加载组件，减少单文件的体积。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/" data-id="cjlw3c9aw000b2xxkkr300vkb" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/06/react-router按需引入/" data-id="cjlw3c9ap00052xxkmostvf03" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/">react-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
     </footer>
   </div>
@@ -108,19 +107,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/06/03/nginx端口转发配置/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/10/react项目的部署/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          nginx端口转发配置
+          react项目的部署
         
       </div>
     </a>
   
   
-    <a href="/2017/08/20/vue子组件修改父组件数据/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/09/04/create-react-app的webpack配置/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vue子组件修改父组件数据</div>
+      <div class="article-nav-title">create-react-app的webpack配置</div>
     </a>
   
 </nav>

@@ -3,20 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>使用Flexible实现手淘H5页面的终端适配 | 夏君的博客</title>
+  <title>夏君的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
-<meta name="keywords" content="css,rem">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用Flexible实现手淘H5页面的终端适配">
-<meta property="og:url" content="http://xiajun1996.github.io/2016/04/24/移动端按比例布局元素的笔记/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="夏君的博客">
+<meta property="og:url" content="http://xiajun1996.github.io/page/2/index.html">
 <meta property="og:site_name" content="夏君的博客">
-<meta property="og:description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-27T07:12:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Flexible实现手淘H5页面的终端适配">
-<meta name="twitter:description" content="一、移动设备尺寸多种多样，带来适配难度，有时候甚至是无从下手。 1.移动设备上的px 像素不等于设备的物理像素。iphone6作为开发标准的设备 物理宽度375  是主流的高端机型iphone5 物理宽度320iphone6plus 物理宽度为414android 设备物理宽度在iphone设备的宽度范围之内或附近。物理像素不等于css px像素 因为有retina屏，甚至3倍retina屏。re">
+<meta name="twitter:title" content="夏君的博客">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -65,7 +60,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-移动端按比例布局元素的笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-移动端按比例布局元素的笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/24/移动端按比例布局元素的笔记/" class="article-date">
   <time datetime="2016-04-23T16:00:00.000Z" itemprop="datePublished">2016-04-24</time>
@@ -78,8 +75,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      使用Flexible实现手淘H5页面的终端适配
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/24/移动端按比例布局元素的笔记/">使用Flexible实现手淘H5页面的终端适配</a>
     </h1>
   
 
@@ -108,29 +105,65 @@
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2016/08/10/sass学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sass学习笔记
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">伪元素实现关闭按钮和添加按钮效果</div>
-    </a>
-  
-</nav>
+</article>
 
+
+  
+    <article id="post-伪元素实现关闭按钮和添加按钮效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" class="article-date">
+  <time datetime="2016-04-21T16:00:00.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/22/伪元素实现关闭按钮和添加按钮效果/">伪元素实现关闭按钮和添加按钮效果</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、伪元素</p>
+<p>没有标签，由css声明在html文档中有明确位置。<br>使用::声明<br>::before 元素内容开始前的占位符元素。<br>::after  元素内容结束前的占位符元素。<br>具有css设置能力<br>必须属性 content:’’; 伪元素的内容，可为空 但是必须设置 如果没有设置 则伪元素不会出现在html中。</p>
+<p>二、关闭按钮实现技巧</p>
+<p>伪元素先呈现为一条线<br>width:100%;<br>height:1.5px;<br>background:#333;<br>使用了css技巧，画出了一根线<br>::before ::after两个伪元素就有了两根线</p>
+<p>三、定位</p>
+<p>把两根线定位到垂直居中<br>将容器声明为relative 告知内部元素 可相对于它进行绝对定位。<br>position:relative；<br>伪元素绝对定位<br>positive:absolute; top:50%; left:0;<br>距离父元素上部50%，那么垂直方向就基本居中了。</p>
+<p>四、形成×的效果</p>
+<p>将两根旋转一下就造成了角度。<br>transform:rotate(45deg);<br>transform:rotate(135deg);<br>transform css3元素变形属性<br>rotate元素旋转角度属性<br>deg 角度单位</p>
+<p>五、形成+的效果</p>
+<p>hover 状态上改变rotate的值<br>:hover::before 一个是状态 一个是伪元素<br>transform：rotate(90deg);<br>transform：rotate(180deg);</p>
+<p>六、过渡效果</p>
+<p>css3属性值的变化，支持使用过滤效果。<br>transition:transform .2s;<br>transition css3动画过渡属性，语法；<br>transition:property1 duration，property2 duration。。。<br>property 是支持过渡的css属性名 duration 是执行时间<br>可以接连设置多个过渡效果。 property设置为all 那么将为元素的任意所有css属性规则的改变使用过渡效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2016/04/22/伪元素实现关闭按钮和添加按钮效果/" data-id="cjlw3c9b3000e2xxk3wckenpq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
   
 </article>
 
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
