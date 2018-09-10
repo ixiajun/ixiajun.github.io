@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/10/react项目的部署/" data-id="cjlw3q60p00059oxkh4ufl3y2" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/10/react项目的部署/" data-id="cjlw3wemv0008jfxkbhe5a7pe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -140,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/06/react-router按需引入/" data-id="cjlw3q60l00049oxkqljhndw3" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/06/react-router按需引入/" data-id="cjlw3wemt0005jfxk5lp97qb5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/">react-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -185,53 +185,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw3q60j00039oxkvmjwpvcz" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw3wemm0003jfxkqmnpoze2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nginx端口转发配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/03/nginx端口转发配置/" class="article-date">
-  <time datetime="2018-06-02T16:00:00.000Z" itemprop="datePublished">2018-06-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前将自己的node.js+mongodb项目部署在服务器上<br>启动后端服务后发现后端服务与前端所部署的端口地址不一致时，请求接口返回404<br>所以这里通过nginx将请求的路径进行转发</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8081;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         /root/myHero/dist</span><br><span class="line">    index          index.html</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#将/api/* 的请求转发至3000端口的/api/*下</span></span><br><span class="line">    </span><br><span class="line">    location ^~ /api/ &#123;</span><br><span class="line">        proxy_pass http://localhost:3000/api/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>假设我们的后台API地址是以API开头，location ^~ /api/ 代表nginx将会拦截请求地址中包含”/api/“字样的请求，其实这就是我们的ajax请求路径，拦截到请求之后根据写法会分成两种情况把这个请求转发到 下面 proxy_pass 的地址上。</p>
-<p>如果proxy_pass 的URL以 / 结尾 ，那么请求转发的时候 将 不会 带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/user/login</a></p>
-<p>如果proxy_pass 的URL不以 / 结尾 ，那么请求转发的时候 将 会带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/api/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/api/user/login</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/06/03/nginx端口转发配置/" data-id="cjlw3q60r00089oxkw322vxja" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 
     </footer>
   </div>
@@ -271,7 +228,50 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/06/03/阿里云ECS服务器安装Mongodb/" data-id="cjlw3q60z000g9oxkcwpayb2j" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/06/03/阿里云ECS服务器安装Mongodb/" data-id="cjlw3wen3000gjfxk9ur6ly9t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nginx端口转发配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/03/nginx端口转发配置/" class="article-date">
+  <time datetime="2018-06-02T16:00:00.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前将自己的node.js+mongodb项目部署在服务器上<br>启动后端服务后发现后端服务与前端所部署的端口地址不一致时，请求接口返回404<br>所以这里通过nginx将请求的路径进行转发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       8081;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">    root         /root/myHero/dist</span><br><span class="line">    index          index.html</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#将/api/* 的请求转发至3000端口的/api/*下</span></span><br><span class="line">    </span><br><span class="line">    location ^~ /api/ &#123;</span><br><span class="line">        proxy_pass http://localhost:3000/api/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设我们的后台API地址是以API开头，location ^~ /api/ 代表nginx将会拦截请求地址中包含”/api/“字样的请求，其实这就是我们的ajax请求路径，拦截到请求之后根据写法会分成两种情况把这个请求转发到 下面 proxy_pass 的地址上。</p>
+<p>如果proxy_pass 的URL以 / 结尾 ，那么请求转发的时候 将 不会 带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/user/login</a></p>
+<p>如果proxy_pass 的URL不以 / 结尾 ，那么请求转发的时候 将 会带上 匹配到的 /api/ ，也就是说如果 登录请求 URL是 localhost:60001/api/user/login，proxy_pass URL 是 <a href="http://a.xx.com:8080/platform/，" target="_blank" rel="noopener">http://a.xx.com:8080/platform/，</a> Nginx将会 把这个请求转发成 <a href="http://a.xx.com:8080/platform/api/user/login" target="_blank" rel="noopener">http://a.xx.com:8080/platform/api/user/login</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiajun1996.github.io/2018/06/03/nginx端口转发配置/" data-id="cjlw3weme0001jfxkwykpz435" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
@@ -315,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/" data-id="cjlw3q60w000d9oxkk4wrdw7e" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2017/08/22/vue2.0组件间事件派发与接受/" data-id="cjlw3wemx0009jfxk8m7gdn1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -358,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2017/08/20/vue子组件修改父组件数据/" data-id="cjlw3q60s00099oxkybw4dg9w" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2017/08/20/vue子组件修改父组件数据/" data-id="cjlw3wemy000bjfxk5ib8wlg4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -400,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2016/08/24/Singleton单例模式/" data-id="cjlw3q60600009oxkqq54l79r" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2016/08/24/Singleton单例模式/" data-id="cjlw3wem90000jfxkmucdxj25" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
@@ -462,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2016/08/10/sass学习笔记/" data-id="cjlw3q60u000b9oxkhsg1jumn" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2016/08/10/sass学习笔记/" data-id="cjlw3wen0000djfxklw6dmv6s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li></ul>
@@ -506,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/" data-id="cjlw3q60c00019oxkl0fjov4f" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2016/08/10/node.js 异步同步及文件操作/" data-id="cjlw3wemo0004jfxkgsn1xx3p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
@@ -575,11 +575,11 @@
           </li>
         
           <li>
-            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
+            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
           </li>
         
           <li>
-            <a href="/2018/06/03/阿里云ECS服务器安装Mongodb/">阿里云ECS服务器安装mongodb</a>
+            <a href="/2018/06/03/nginx端口转发配置/">nginx端口转发配置</a>
           </li>
         
       </ul>
