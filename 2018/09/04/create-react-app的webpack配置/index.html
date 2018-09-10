@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="夏君的博客">
 <meta property="og:description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png">
-<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png">
-<meta property="og:updated_time" content="2018-09-10T08:54:09.000Z">
+<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/1.png">
+<meta property="og:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/2.png">
+<meta property="og:updated_time" content="2018-09-10T09:52:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="create-react-app的webpack配置">
 <meta name="twitter:description" content="最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。 首先通过react的脚手架初始化项目先全局安装react脚手架1npm install -g create-react-app 安装完之后初始化项目123create-react-app my-appcd my-appnpm start react脚手架和vue-cli有所不同create-react">
-<meta name="twitter:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png">
+<meta name="twitter:image" content="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/1.png">
   
     <link rel="alternate" href="javascript:;" title="夏君的博客" type="application/atom+xml">
   
@@ -93,15 +93,15 @@
         <p>最近新启动一个项目，之前的项目一直用vue，决定尝试一下react，并记录下开发过程及踩坑过程。</p>
 <p>首先通过react的脚手架初始化项目<br>先全局安装react脚手架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure></p>
 <p>安装完之后初始化项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create-react-app my-app</span><br><span class="line">cd my-app</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
-<p>react脚手架和vue-cli有所不同<br>create-react-app生成的package的script配置如下<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/1.png" alt=""><br>start：启动本地项目<br>build：打包项目<br>test：运行测试<br>eject：弹射<br>create-react-app默认的webpack的配置不和vue-cli一样直接提供修改  如果需要自己配置webpck的话就要用到eject这个操作了，但是这个操作是不可逆的，即运行之后就不能撤回了。  默认配置中没有集成css预处理器， 于是在这里我就执行了eject，并安装了sass</p>
+<p>react脚手架和vue-cli有所不同<br>create-react-app生成的package的script配置如下<br><img src="/2018/09/04/create-react-app的webpack配置/1.png" alt=""><br>start：启动本地项目<br>build：打包项目<br>test：运行测试<br>eject：弹射<br>create-react-app默认的webpack的配置不和vue-cli一样直接提供修改  如果需要自己配置webpck的话就要用到eject这个操作了，但是这个操作是不可逆的，即运行之后就不能撤回了。  默认配置中没有集成css预处理器， 于是在这里我就执行了eject，并安装了sass</p>
 <p>执行npm run eject后，项目生成了一个config文件夹，里面就是webpack的配置了<br>在webpack.config.dev.js和webpack.config.pro.js的配置文件里同时添加如下配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        loaders: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'sass-loader'</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在 exclude 中添加 /.scss$/,<br><img src="/2018/09/04/create-react-app的webpack配置/create-react-app的webpack配置及项目部署/2.png" alt=""></p>
+<p>在 exclude 中添加 /.scss$/,<br><img src="/2018/09/04/create-react-app的webpack配置/2.png" alt=""></p>
 <p>这样即可在项目中使用sscs来写样式了！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw3wemm0003jfxkqmnpoze2" class="article-share-link">Share</a>
+      <a data-url="http://xiajun1996.github.io/2018/09/04/create-react-app的webpack配置/" data-id="cjlw3z3e00001l8xkega8qaz1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
